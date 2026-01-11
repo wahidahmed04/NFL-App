@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import styles from '/src/styling/DefensiveTeamStatsTable.module.css'
 import {getTeamStats} from '/src/fetch-supabase/getTeamStats.js'
 import { supabase } from '../supabaseClient.js'
+import Header from '../Header.jsx'
 export default function DefensiveTeamStats() {
   const [teamStats, setTeamStats] = useState([])
   useEffect(() => {
@@ -31,32 +32,49 @@ export default function DefensiveTeamStats() {
   load()
 }, [])
   return (
-    <div>
-      <h1>Defensive Stats</h1>
+    <div className={styles.all_container}>
+      <Header/>
+      <h1 className={styles.title}>Defensive Team Stats</h1>
       <table>
-        <caption>Team Defensive Stats Table</caption>
         <thead>
-          <tr>
+          <tr className={styles.header_row}>
           <th>TM</th>
           <th>G</th>
           <th>W</th>
           <th>L</th>
           <th>T</th>
           <th>PAPG</th>
-          <th>PASS_YDS</th>
-          <th>RUSH_YDS</th>
-          <th>TDS</th>
+          <th>PYD</th>
+          <th>RYD</th>
+          <th>TD</th>
           <th>YPG</th>
-          <th>RDZN_CONV%</th>
-          <th>THRD_DOWN_CONV%</th>
+          <th>RD%</th>
+          <th>3D%</th>
           <th>SK</th>
           </tr>
         </thead>
         <tbody>
-          {teamStats.map((team) => {
-
-            return(
-            <tr key={team.id}>
+          {teamStats.map((team, index) => {
+            const rows = []
+            if(index % 20 === 0 && index != 0){
+              rows.push(<tr key={`column-header-${index}`} className={styles.header_row}>
+          <th>TM</th>
+          <th>G</th>
+          <th>W</th>
+          <th>L</th>
+          <th>T</th>
+          <th>PAPG</th>
+          <th>PYD</th>
+          <th>RYD</th>
+          <th>TD</th>
+          <th>YPG</th>
+          <th>RD%</th>
+          <th>3D%</th>
+          <th>SK</th>
+          </tr>)
+            }
+            rows.push(
+            <tr key={`team-${team.id}`}>
               <td>{team.teamName}</td>
               <td>{team.games_played}</td>
               <td>{team.wins}</td>
@@ -74,6 +92,7 @@ export default function DefensiveTeamStats() {
 
             </tr>
             )
+            return rows
 })}
         </tbody>
       </table>

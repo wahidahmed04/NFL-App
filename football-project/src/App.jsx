@@ -1,20 +1,13 @@
 import { useState, useEffect } from 'react'
-
+import Home from './Home.jsx'
 import OffensiveTeamStatsTable from './table-components/OffensiveTeamStatsTable.jsx'
 import OffensivePlayerStatsTable from './table-components/OffensivePlayerStatsTable.jsx'
+import DefensiveTeamStatsTable from './table-components/DefensiveTeamStatsTable.jsx'
 import DefensivePlayerStatsTable from './table-components/DefensivePlayerStatsTable.jsx'
 function App() {
-  const [teams, setTeams] = useState([])
-  useEffect(() => {
-    async function load(){
-      const data = await getTeams()
-      setTeams(data)
-    }
-    load()
-  }, [])
   return (
     <>
-    <OffensiveTeamStatsTable/>
+    <Home/>
     </>
   )
 }

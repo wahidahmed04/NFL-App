@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 .env
 .node_modules/
-.DS_Store
+.DS_Stor

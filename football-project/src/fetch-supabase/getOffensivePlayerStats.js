@@ -5,7 +5,8 @@ export async function getOffensivePlayerStats(){
   .select(`
     *,
     players (
-      name
+      name,
+      position
     )
   `)
     if (error) {

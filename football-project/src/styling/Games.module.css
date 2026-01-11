@@ -1,0 +1,17 @@
+  html, body {
+    min-height: 100%;
+    margin: 0;
+  }
+  body{
+    height: auto;
+    
+  }
+  .all_container{
+    min-height: 100vh;
+    background-color: #1f2937; /* dark gray/blue */
+color: white; /* make text readable */
+  }
+.title{
+    font-size: 50px;
+    text-align: center;
+}

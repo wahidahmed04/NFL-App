@@ -1,0 +1,48 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.all_container{
+     position: fixed;      /* stays fixed to the viewport */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;     /* hides scrollbars if content overflows */
+  background-color: rgb(34, 97, 255);
+}
+.title{
+  margin: 0;
+    font-size: 45px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.navbar a{
+  border: 2px solid transparent;
+color: white;
+text-decoration: none;
+padding: 15px;
+display: block;
+text-align: center;
+font-size: 22px;
+margin-right: 20px;
+}
+.navbar ul{
+  list-style-type: none;
+  background-color: rgb(38, 47, 61);
+  padding: 0px;
+  margin: 0;
+  overflow: hidden;
+}
+.navbar a:hover{
+  border-color: white;
+
+}
+.navbar li{
+  float:left;
+}

@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import styles from '/src/styling/OffensivePlayerStatsTable.module.css'
 import { getOffensivePlayerStats } from '/src/fetch-supabase/getOffensivePlayerStats.js'
 import { supabase } from '../supabaseClient.js'
+import Header from '../Header.jsx'
 export default function OffensivePlayerStatsTable() {
     
 const [playerStats, setPlayerStats] = useState([])
@@ -15,38 +16,75 @@ const [playerStats, setPlayerStats] = useState([])
   load()
 }, [])
   return (
-    <div>
-      <h1>Offensive Player Stats</h1>
+    <div className={styles.all_container}>
+      <Header/>
+      <h1 className={styles.title}>Offensive Player Stats</h1>
       <table>
-        <caption>Offensive Player Stats Table</caption>
         <thead>
-          <tr>
+              <tr className={styles.header_row}>
+      <th colSpan="5"></th>
+      <th colSpan="6">PASSING</th>   
+      <th colSpan="3">RUSHING</th>
+      <th colSpan="4">RECEIVING</th> 
+    </tr>
+          <tr className={styles.header_row}>
           <th>PLAYER</th>
           <th>TM</th>
+          <th>POS</th>
           <th>G</th>
           <th>GS</th>
-          <th>PASS_ATT</th>
-          <th>PASS_CMP</th>
-          <th>PASS_YDS</th>
-          <th>PASS_TDS</th>
+          <th>ATT</th>
+          <th>CMP</th>
+          <th>YDS</th>
+          <th>TD</th>
           <th>INT</th>
-          <th>PASS_RATE</th>
-          <th>RUSH_ATT</th>
-          <th>RUSH_YDS</th>
-          <th>RUSH_TDS</th>
+          <th>RATE</th>
+          <th>ATT</th>
+          <th>YDS</th>
+          <th>TD</th>
           <th>REC</th>
-          <th>REC_YDS</th>
-          <th>REC_TDS</th>
+          <th>YDS</th>
+          <th>TD</th>
           <th>TGT</th>
           </tr>
         </thead>
         <tbody>
-          {playerStats.map((player) => {
-
-            return(
-            <tr key={player.id}>
+          {playerStats.map((player, index) => {
+            const rows = []
+            if(index % 22 === 0 && index != 0){
+              rows.push(<tr key={`group-header-${index}`} className={styles.header_row}>
+      <th colSpan="5"></th>
+      <th colSpan="6">PASSING</th>   
+      <th colSpan="3">RUSHING</th>
+      <th colSpan="4">RECEIVING</th> 
+    </tr>)
+    rows.push(<tr key={`column-header-${index}`} className={styles.header_row}>
+          <th>PLAYER</th>
+          <th>TM</th>
+          <th>POS</th>
+          <th>G</th>
+          <th>GS</th>
+          <th>ATT</th>
+          <th>CMP</th>
+          <th>YDS</th>
+          <th>TD</th>
+          <th>INT</th>
+          <th>RATE</th>
+          <th>ATT</th>
+          <th>YDS</th>
+          <th>TD</th>
+          <th>REC</th>
+          <th>YDS</th>
+          <th>TD</th>
+          <th>TGT</th>
+          </tr>)
+            }
+            rows.push
+            (
+            <tr key={`player-${player.id}`}>
               <td>{player.players.name}</td>
               <td>{player.team}</td>
+              <td>{player.players.position}</td>
               <td>{player.games_played}</td>
               <td>{player.games_started}</td>
               <td>{player.passing_attempts}</td>
@@ -64,6 +102,7 @@ const [playerStats, setPlayerStats] = useState([])
               <td>{player.targets}</td>
             </tr>
             )
+            return rows
 })}
         </tbody>
       </table>
