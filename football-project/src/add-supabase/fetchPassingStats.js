@@ -51,8 +51,9 @@ async function scrapePassingStats(url){
       } 
     });
     const $ = cheerio.load(data);
+    const table = $('table[data-soc-sum-phase-type="reg"]')
     const results = []
-    $('tbody tr').each((_, row) => {
+    table.find('tbody tr').each((_, row) => {
         if (
     $(row).hasClass('thead') ||
     $(row).hasClass('norank')
@@ -68,6 +69,8 @@ async function scrapePassingStats(url){
   return
   }
   const playerName = $(row).find('td[data-stat="name_display"] a').text().trim();
+  const rank = $(row).find('th[data-stat="ranker"]').text().trim();
+  console.log(rank)
   const completions = $(row).find('td[data-stat="pass_cmp"]').text().trim();
   const attempts = $(row).find('td[data-stat="pass_att"]').text().trim();
   let passingYards = $(row).find('td[data-stat="pass_yds"] strong').text().trim();
@@ -90,6 +93,7 @@ async function scrapePassingStats(url){
   const gamesPlayed = $(row).find('td[data-stat="games"]').text().trim();
   const gamesStarted = $(row).find('td[data-stat="games_started"]').text().trim();
   const obj ={
+    rank,
     playerName,
     completions, 
     attempts,
@@ -219,6 +223,7 @@ for (const obj of passingStats) {
       passer_rating: !obj.passerRating ? 0 : obj.passerRating,
       games_played: obj.gamesPlayed,
       games_started: obj.gamesStarted,
+      passing_rank: obj.rank,
       team: obj.team,
       last_updated: new Date()
     }, { onConflict: 'player_id, season' });

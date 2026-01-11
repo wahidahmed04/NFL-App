@@ -10,7 +10,40 @@ const toFloat = str => {
   const n = parseFloat(str.replace(/,/g, ''));
   return isNaN(n) ? 0 : n;
 };
-
+  const abbreviationMap = {
+  "ARI": "ARI",
+  "ATL": "ATL",
+  "BAL": "BAL",
+  "BUF": "BUF",
+  "CAR": "CAR",
+  "CHI": "CHI",
+  "CIN": "CIN",
+  "CLE": "CLE",
+  "DAL": "DAL",
+  "DEN": "DEN",
+  "DET": "DET",
+  "GNB": "GB",
+  "HOU": "HOU",
+  "IND": "IND",
+  "JAX": "JAX",
+  "KAN": "KC",
+  "LVR": "LV",
+  "LAC": "LAC",
+  "LAR": "LAR",
+  "MIA": "MIA",
+  "MIN": "MIN",
+  "NWE": "NE",
+  "NOR": "NO",
+  "NYG": "NYG",
+  "NYJ": "NYJ",
+  "PHI": "PHI",
+  "PIT": "PIT",
+  "SFO": "SF",
+  "SEA": "SEA",
+  "TAM": "TB",
+  "TEN": "TEN",
+  "WAS": "WSH"
+}
 const normalize = name =>
   name
     .replace(/[\.\-\,]/g, '')         // remove periods, hyphens, commas
@@ -42,6 +75,7 @@ async function scrapeDefensiveStats(url){
   results[results.length-1].team = team
   return
   }
+  const rank = $(row).find('th[data-stat="ranker"]').text().trim();
   const playerName = $(row).find('td[data-stat="name_display"] a').text().trim();
   if (!playerName) {
   console.warn("Empty player name row skipped");
@@ -119,6 +153,7 @@ async function scrapeDefensiveStats(url){
     team = $(row).find('td[data-stat="team_name_abbr"]').text().trim();
   }
   const obj = {
+  rank,
   playerName,
   gamesPlayed,
   gamesStarted,
@@ -271,6 +306,7 @@ for (const obj of defensiveStats) {
       sacks: toFloat(obj.sacks),
       safeties: toInt(obj.safeties),
       team: obj.team,
+      rank: obj.rank,
       last_updated: new Date()
     }, { onConflict: "player_id, season" });
 
