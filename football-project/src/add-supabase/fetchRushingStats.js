@@ -55,8 +55,9 @@ async function scrapeRushingStats(url){
       } 
     });
     const $ = cheerio.load(data);
+    const table = $('table[data-soc-sum-phase-type="reg"]')
     const results = []
-    $('tbody tr').each((_, row) => {
+    table.find('tbody tr').each((_, row) => {
         if (
     $(row).hasClass('thead') ||
     $(row).hasClass('norank') ||
@@ -219,6 +220,7 @@ async function fetchRushingStats(){
       team: obj.team,
       games_played: obj.gamesPlayed,
       games_started: obj.gamesStarted,
+      rushing_score: (((obj.rushingYards/15)+(obj.rushingTouchdowns*6))/obj.gamesPlayed).toFixed(2),
       last_updated: new Date()
     }, { onConflict: 'player_id, season' });
 

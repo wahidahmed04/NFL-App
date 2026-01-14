@@ -58,8 +58,9 @@ async function scrapeDefensiveStats(url){
       } 
     });
     const $ = cheerio.load(data);
+    const table = $('table[data-soc-sum-phase-type="reg"]')
     const results = []
-    $('tbody tr').each((_, row) => {
+    table.find('tbody tr').each((_, row) => {
         if (
     $(row).hasClass('thead') ||
     $(row).hasClass('norank') ||
@@ -75,7 +76,6 @@ async function scrapeDefensiveStats(url){
   results[results.length-1].team = team
   return
   }
-  const rank = $(row).find('th[data-stat="ranker"]').text().trim();
   const playerName = $(row).find('td[data-stat="name_display"] a').text().trim();
   if (!playerName) {
   console.warn("Empty player name row skipped");
@@ -153,7 +153,7 @@ async function scrapeDefensiveStats(url){
     team = $(row).find('td[data-stat="team_name_abbr"]').text().trim();
   }
   const obj = {
-  rank,
+
   playerName,
   gamesPlayed,
   gamesStarted,
@@ -306,7 +306,30 @@ for (const obj of defensiveStats) {
       sacks: toFloat(obj.sacks),
       safeties: toInt(obj.safeties),
       team: obj.team,
-      rank: obj.rank,
+      score:
+  // Turnovers (highest impact)
+  (((obj.interceptions * 6)
++ (obj.interceptionTouchdowns * 12)
++ (obj.interceptionYards / 10)
+
++ (obj.forcedFumbles * 5)
++ (obj.fumblesRecovered * 4)
++ (obj.fumbleReturnTouchdowns * 12)
++ (obj.recoveredFumbleYards / 10)
+
+  // Pass defense (DB value)
++ (obj.passesDefended * 1.5)
+
+  // Disruption / backfield impact
++ (obj.sacks * 4)
++ (obj.tacklesForLoss * 2.5)
++ (obj.QBHits * 1.5)
++ (obj.safeties * 8)
+
+  // Tackling (kept intentionally low)
++ (obj.soloTackles * 0.75)
++ (obj.assistedTackles * 0.35))/obj.gamesPlayed).toFixed(2),
+
       last_updated: new Date()
     }, { onConflict: "player_id, season" });
 

@@ -22,12 +22,13 @@ const [playerStats, setPlayerStats] = useState([])
       <table>
         <thead>
               <tr className={styles.header_row}>
-      <th colSpan="5"></th>
+      <th colSpan="6"></th>
       <th colSpan="6">PASSING</th>   
       <th colSpan="3">RUSHING</th>
       <th colSpan="4">RECEIVING</th> 
     </tr>
           <tr className={styles.header_row}>
+            <th>Rk</th>
           <th>PLAYER</th>
           <th>TM</th>
           <th>POS</th>
@@ -53,12 +54,13 @@ const [playerStats, setPlayerStats] = useState([])
             const rows = []
             if(index % 22 === 0 && index != 0){
               rows.push(<tr key={`group-header-${index}`} className={styles.header_row}>
-      <th colSpan="5"></th>
+      <th colSpan="6"></th>
       <th colSpan="6">PASSING</th>   
       <th colSpan="3">RUSHING</th>
       <th colSpan="4">RECEIVING</th> 
     </tr>)
     rows.push(<tr key={`column-header-${index}`} className={styles.header_row}>
+      <th>Rk</th>
           <th>PLAYER</th>
           <th>TM</th>
           <th>POS</th>
@@ -82,6 +84,7 @@ const [playerStats, setPlayerStats] = useState([])
             rows.push
             (
             <tr key={`player-${player.id}`}>
+              <td>{index+1}</td>
               <td>{player.players.name}</td>
               <td>{player.team}</td>
               <td>{player.players.position}</td>

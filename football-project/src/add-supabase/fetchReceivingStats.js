@@ -55,8 +55,9 @@ async function scrapeReceivingStats(url){
       } 
     });
     const $ = cheerio.load(data);
+    const table = $('table[data-soc-sum-phase-type="reg"]')
     const results = []
-    $('tbody tr').each((_, row) => {
+    table.find('tbody tr').each((_, row) => {
         if (
     $(row).hasClass('thead') ||
     $(row).hasClass('norank') ||
@@ -225,6 +226,7 @@ async function fetchReceivingStats(){
       team: obj.team,
       games_played: obj.gamesPlayed,
       games_started: obj.gamesStarted,
+      receiving_score: (((obj.receptions*0.5)+(obj.receivingYards/15)+(obj.receivingTouchdowns*6))/obj.gamesPlayed).toFixed(2),
       last_updated: new Date()
     }, { onConflict: 'player_id, season' });
 

@@ -44,6 +44,8 @@ const [playerStats, setPlayerStats] = useState([])
     const stats = await getDefensivePlayerStats()
 
     setPlayerStats(stats)
+    console.log(stats);
+    
   }
 
   load()
@@ -55,13 +57,14 @@ const [playerStats, setPlayerStats] = useState([])
       <table>
         <thead>
           <tr className={styles.header_row}>
-      <th colSpan="5"></th>
+      <th colSpan="6"></th>
       <th colSpan="4">INTERCEPTIONS</th>   
       <th colSpan="5">FUMBLES</th>
       <th colSpan="5">TACKLES</th> 
       <th colSpan="2"></th>
     </tr>
           <tr className={styles.header_row}>
+          <th>Rk</th>
           <th>PLAYER</th>
           <th>TM</th>
           <th>POS</th>
@@ -76,9 +79,9 @@ const [playerStats, setPlayerStats] = useState([])
           <th>FR</th>
           <th>FMB_YDS</th>
           <th>FRTD</th>
-          <th>COMB_TCKL</th>
-          <th>SOLO_TCKL</th>
-          <th>AST_TCKL</th>
+          <th>COMB</th>
+          <th>SOLO</th>
+          <th>AST</th>
           <th>TFL</th>
           <th>QBHITS</th>
           <th>SK</th>
@@ -93,7 +96,7 @@ const [playerStats, setPlayerStats] = useState([])
     if (index % 22 === 0 && index !== 0) {
       rows.push(
         <tr className={styles.header_row} key={`group-header-${index}`}>
-          <th colSpan="5"></th>
+          <th colSpan="6"></th>
           <th colSpan="4">INTERCEPTIONS</th>   
           <th colSpan="5">FUMBLES</th>
           <th colSpan="5">TACKLES</th> 
@@ -102,6 +105,7 @@ const [playerStats, setPlayerStats] = useState([])
       );
       rows.push(
         <tr className={styles.header_row} key={`column-header-${index}`}>
+          <th>Rk</th>
           <th>PLAYER</th>
           <th>TM</th>
           <th>POS</th>
@@ -116,9 +120,9 @@ const [playerStats, setPlayerStats] = useState([])
           <th>FR</th>
           <th>FMB_YDS</th>
           <th>FRTD</th>
-          <th>COMB_TCKL</th>
-          <th>SOLO_TCKL</th>
-          <th>AST_TCKL</th>
+          <th>COMB</th>
+          <th>SOLO</th>
+          <th>AST</th>
           <th>TFL</th>
           <th>QBHITS</th>
           <th>SK</th>
@@ -130,6 +134,7 @@ const [playerStats, setPlayerStats] = useState([])
     // the actual player row
     rows.push(
       <tr key={`player-${player.id}`}>
+        <td>{index+1}</td>
         <td>{player.players.name}</td>
         <td>{player.team}</td>
         <td>{player.players.position}</td>
