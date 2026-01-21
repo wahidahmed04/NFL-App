@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import styles from '/src/styling/DefensiveTeamStatsTable.module.css'
 import {getTeamStats} from '/src/fetch-supabase/getTeamStats.js'
 import { supabase } from '../supabaseClient.js'
-import Header from '../Header.jsx'
+import Header from '../support-components/Header.jsx'
 export default function DefensiveTeamStats() {
   const [teamStats, setTeamStats] = useState([])
   useEffect(() => {

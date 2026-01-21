@@ -2,7 +2,8 @@ import {useState, useEffect} from 'react'
 import styles from '/src/styling/Home.module.css'
 import {getRecentGames} from '/src/fetch-supabase/getRecentGames.js'
 import { Link } from 'react-router-dom'
-import Header from './Header'
+import Header from './Header.jsx'
+import PlayerCard from './PlayerCard.jsx'
 export default function Home() {
   const [recentGames, setRecentGames] = useState([])
   useEffect(() => {

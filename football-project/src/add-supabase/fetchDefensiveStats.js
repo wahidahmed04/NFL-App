@@ -306,9 +306,7 @@ for (const obj of defensiveStats) {
       sacks: toFloat(obj.sacks),
       safeties: toInt(obj.safeties),
       team: obj.team,
-      score:
-  // Turnovers (highest impact)
-  (((obj.interceptions * 6)
+      score:(((obj.interceptions * 6)
 + (obj.interceptionTouchdowns * 12)
 + (obj.interceptionYards / 10)
 

@@ -2,9 +2,12 @@ import {useState, useEffect} from 'react'
 import styles from '/src/styling/OffensivePlayerStatsTable.module.css'
 import { getOffensivePlayerStats } from '/src/fetch-supabase/getOffensivePlayerStats.js'
 import { supabase } from '../supabaseClient.js'
-import Header from '../Header.jsx'
+import Header from '../support-components/Header.jsx'
+import PlayerCard from '../support-components/PlayerCard.jsx'
+import x from '../assets/x-icon.png'
 export default function OffensivePlayerStatsTable() {
-    
+  const [showModal, setShowModal] = useState(false)
+  const [currId, setCurrId] = useState(null)
 const [playerStats, setPlayerStats] = useState([])
   useEffect(() => {
   async function load() {
@@ -22,13 +25,14 @@ const [playerStats, setPlayerStats] = useState([])
       <table>
         <thead>
               <tr className={styles.header_row}>
-      <th colSpan="6"></th>
+      <th colSpan="7"></th>
       <th colSpan="6">PASSING</th>   
       <th colSpan="3">RUSHING</th>
       <th colSpan="4">RECEIVING</th> 
     </tr>
           <tr className={styles.header_row}>
-            <th>Rk</th>
+            <th>RK</th>
+            <th>SC</th>
           <th>PLAYER</th>
           <th>TM</th>
           <th>POS</th>
@@ -54,13 +58,14 @@ const [playerStats, setPlayerStats] = useState([])
             const rows = []
             if(index % 22 === 0 && index != 0){
               rows.push(<tr key={`group-header-${index}`} className={styles.header_row}>
-      <th colSpan="6"></th>
+      <th colSpan="7"></th>
       <th colSpan="6">PASSING</th>   
       <th colSpan="3">RUSHING</th>
       <th colSpan="4">RECEIVING</th> 
     </tr>)
     rows.push(<tr key={`column-header-${index}`} className={styles.header_row}>
-      <th>Rk</th>
+      <th>RK</th>
+      <th>SC</th>
           <th>PLAYER</th>
           <th>TM</th>
           <th>POS</th>
@@ -85,7 +90,15 @@ const [playerStats, setPlayerStats] = useState([])
             (
             <tr key={`player-${player.id}`}>
               <td>{index+1}</td>
+              <td>{player.total_offense_score}</td>
+              {(player.players.position === "QB" || player.players.position === "WR" || player.players.position === "TE" || player.players.position === "RB") ? (
+                <td><a onClick={() => {
+                setShowModal(true); setCurrId(player.player_id)
+              }}>{player.players.name}</a></td>
+              ) : 
               <td>{player.players.name}</td>
+              }
+              
               <td>{player.team}</td>
               <td>{player.players.position}</td>
               <td>{player.games_played}</td>
@@ -109,6 +122,14 @@ const [playerStats, setPlayerStats] = useState([])
 })}
         </tbody>
       </table>
+      {showModal && (
+        <div className={styles.modal_overlay}>
+          <div className={styles.modal_content}>
+            <img className={styles.player_img} src={x} alt="X" onClick={() => {setShowModal(false); setCurrId(null)}} />
+            <PlayerCard playerId={currId} type="Offense"/>
+          </div>
+          </div>
+      )}
     </div>
   )
 }

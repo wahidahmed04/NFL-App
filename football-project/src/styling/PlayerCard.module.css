@@ -1,0 +1,53 @@
+.card_container{
+    padding: 15px;
+    background-color: rgb(25, 79, 255);
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card_container .name, .player_image {
+  margin: 0 auto;
+}
+.player_image{
+    height: 200px;
+
+}
+.name{
+    font-size: 35px;
+    text-align: center;
+}
+.line_break {
+  flex-basis: 100%; /* Forces the element to take the full width, pushing subsequent items to the next line */
+  height: 0; /* Keeps the break element from taking up vertical space */
+  margin: 0; /* Resets any default margins */
+}
+.stats{
+    font-size: 25px;
+}
+.stat_header{
+    font-size: 18px;
+    color: white;
+    white-space: nowrap;
+    text-align: center;
+}
+.stats_row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%
+}
+
+.stat_col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+.stat_col h3 {
+  margin: 7.5px;
+}
+

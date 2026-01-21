@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import styles from '/src/styling/DefensivePlayerStatsTable.module.css'
 import { getDefensivePlayerStats } from '/src/fetch-supabase/getDefensivePlayerStats.js'
 import { supabase } from '../supabaseClient.js'
-import Header from '../Header.jsx'
+import Header from '../support-components/Header.jsx'
 export default function DefensivePlayerStatsTable() {
     const abbreviationMap = {
   "ARI": "ARI",
@@ -57,22 +57,23 @@ const [playerStats, setPlayerStats] = useState([])
       <table>
         <thead>
           <tr className={styles.header_row}>
-      <th colSpan="6"></th>
+      <th colSpan="7"></th>
       <th colSpan="4">INTERCEPTIONS</th>   
       <th colSpan="5">FUMBLES</th>
       <th colSpan="5">TACKLES</th> 
       <th colSpan="2"></th>
     </tr>
           <tr className={styles.header_row}>
-          <th>Rk</th>
+          <th>RK</th>
+          <th>SC</th>
           <th>PLAYER</th>
           <th>TM</th>
           <th>POS</th>
           <th>G</th>
           <th>GS</th>
           <th>INT</th>
-          <th>INT_YDS</th>
-          <th>INT_TDS</th>
+          <th>YDS</th>
+          <th>INT_TD</th>
           <th>PD</th>
           <th>FF</th>
           <th>FMB</th>
@@ -96,7 +97,7 @@ const [playerStats, setPlayerStats] = useState([])
     if (index % 22 === 0 && index !== 0) {
       rows.push(
         <tr className={styles.header_row} key={`group-header-${index}`}>
-          <th colSpan="6"></th>
+          <th colSpan="7"></th>
           <th colSpan="4">INTERCEPTIONS</th>   
           <th colSpan="5">FUMBLES</th>
           <th colSpan="5">TACKLES</th> 
@@ -105,15 +106,16 @@ const [playerStats, setPlayerStats] = useState([])
       );
       rows.push(
         <tr className={styles.header_row} key={`column-header-${index}`}>
-          <th>Rk</th>
+          <th>RK</th>
+          <th>SC</th>
           <th>PLAYER</th>
           <th>TM</th>
           <th>POS</th>
           <th>G</th>
           <th>GS</th>
           <th>INT</th>
-          <th>INT_YDS</th>
-          <th>INT_TDS</th>
+          <th>YDS</th>
+          <th>INT_TD</th>
           <th>PD</th>
           <th>FF</th>
           <th>FMB</th>
@@ -135,6 +137,7 @@ const [playerStats, setPlayerStats] = useState([])
     rows.push(
       <tr key={`player-${player.id}`}>
         <td>{index+1}</td>
+        <td>{player.score}</td>
         <td>{player.players.name}</td>
         <td>{player.team}</td>
         <td>{player.players.position}</td>

@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import Header from './Header'
+import Header from './Header.jsx'
 import styles from '/src/styling/Games.module.css'
 import {getAllGames} from '/src/fetch-supabase/getAllGames.js'
 export default function Games() {

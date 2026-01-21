@@ -37,7 +37,8 @@ const players = allPlayers
     headshot_url: p.headshot?.href || null,
     height: p.displayHeight || null,
     weight: parseWeight(p.displayWeight) || null,
-    normalized_name: normalize(p.displayName) || normalize(`${p.firstName ?? ""} ${p.lastName ?? ""}`.trim())|| "Unknown"
+    normalized_name: normalize(p.displayName) || normalize(`${p.firstName ?? ""} ${p.lastName ?? ""}`.trim())|| "Unknown",
+    age: p.age || null
   }));
 
 

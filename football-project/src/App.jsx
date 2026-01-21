@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Home from './Home.jsx'
+
 import OffensiveTeamStatsTable from './table-components/OffensiveTeamStatsTable.jsx'
 import OffensivePlayerStatsTable from './table-components/OffensivePlayerStatsTable.jsx'
 import DefensiveTeamStatsTable from './table-components/DefensiveTeamStatsTable.jsx'
