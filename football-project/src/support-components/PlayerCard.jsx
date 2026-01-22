@@ -3,7 +3,7 @@ import { getSinglePlayerStats } from '../fetch-supabase/getSinglePlayerStats.js'
 import styles from '/src/styling/PlayerCard.module.css'
 export default function PlayerCard({playerId, type}) {
   const [playerStats, setPlayerStats] = useState([])
-
+  const [onBack, setOnBack] = useState(false)
   useEffect(() => {
     async function load() {
       const stats = await getSinglePlayerStats(playerId, type)
@@ -84,6 +84,7 @@ else if(p.players.position === "RB"){
 if(p.players.position === "WR" || p.players.position==="TE"){
   return (
     <div className={styles.card_container}>
+      <div className={styles.front}>
       <img className={styles.player_image} src={p.players.headshot_url}/>
       <div className={styles.line_break}></div>
       <h3 className={styles.name}>{p.players.name}</h3> 
@@ -108,7 +109,33 @@ if(p.players.position === "WR" || p.players.position==="TE"){
     <h3 className={styles.stat_header}>Rec TD</h3>
   </div>
 </div>
+</div>
+<div className={styles.back}>
+      <img className={styles.player_image} src={p.players.headshot_url}/>
+      <div className={styles.line_break}></div>
+      <h3 className={styles.name}>{p.players.name}</h3> 
+      <div className={styles.line_break}></div>
+       <div className={styles.stats_row}>
+        <div className={styles.stat_col}>
+          <h3 className={styles.stats}>{p.receptions}</h3>
+          <h3 className={styles.stat_header}>Rec</h3>
+        </div>
+        <div className={styles.stat_col}>
+          <h3 className={styles.stats}>{(p.receiving_yards / p.games_played).toFixed(0)}</h3>
+          <h3 className={styles.stat_header}>Rec YPG</h3>
+        </div>
 
+  <div className={styles.stat_col}>
+    <h3 className={styles.stats}>{(p.receiving_yards / p.receptions).toFixed(1)}</h3>
+    <h3 className={styles.stat_header}>Yds/Rec</h3>
+  </div>
+
+  <div className={styles.stat_col}>
+    <h3 className={styles.stats}>{p.receiving_touchdowns}</h3>
+    <h3 className={styles.stat_header}>Rec TD</h3>
+  </div>
+</div>
+</div>
     </div>
   )
 }

@@ -3,6 +3,8 @@ import styles from '/src/styling/DefensivePlayerStatsTable.module.css'
 import { getDefensivePlayerStats } from '/src/fetch-supabase/getDefensivePlayerStats.js'
 import { supabase } from '../supabaseClient.js'
 import Header from '../support-components/Header.jsx'
+import DefensivePlayerCard from '/src/support-components/DefensivePlayerCard.jsx'
+import x from '../assets/x-icon.png'
 export default function DefensivePlayerStatsTable() {
     const abbreviationMap = {
   "ARI": "ARI",
@@ -38,6 +40,8 @@ export default function DefensivePlayerStatsTable() {
   "TEN": "TEN",
   "WAS": "WSH"
 }
+const [showModal, setShowModal] = useState(false)
+  const [currId, setCurrId] = useState(null)
 const [playerStats, setPlayerStats] = useState([])
   useEffect(() => {
   async function load() {
@@ -138,7 +142,13 @@ const [playerStats, setPlayerStats] = useState([])
       <tr key={`player-${player.id}`}>
         <td>{index+1}</td>
         <td>{player.score}</td>
-        <td>{player.players.name}</td>
+        {(player.players.position === "CB" || player.players.position === "S" || player.players.position === "LB" || player.players.position === "DT" || player.players.position ==="DE") ? (
+                <td><a onClick={() => {
+                setShowModal(true); setCurrId(player.player_id)
+              }}>{player.players.name}</a></td>
+              ) : 
+              <td>{player.players.name}</td>
+              }
         <td>{player.team}</td>
         <td>{player.players.position}</td>
         <td>{player.games_played}</td>
@@ -166,6 +176,14 @@ const [playerStats, setPlayerStats] = useState([])
   })}
 </tbody>
       </table>
+      {showModal && (
+              <div className={styles.modal_overlay}>
+                <div className={styles.modal_content}>
+                  <img className={styles.x_button} src={x} alt="X" onClick={() => {setShowModal(false); setCurrId(null)}} />
+                  <DefensivePlayerCard playerId={currId} type="Defense"/>
+                </div>
+                </div>
+            )}
     </div>
   )
 }

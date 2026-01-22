@@ -8,11 +8,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    cursor: pointer;
 }
-.card_container:hover{
-    transform: rotateY(10deg);
-}
+
 .card_container .name, .player_image {
   margin: 0 auto;
 }

@@ -125,7 +125,7 @@ const [playerStats, setPlayerStats] = useState([])
       {showModal && (
         <div className={styles.modal_overlay}>
           <div className={styles.modal_content}>
-            <img className={styles.player_img} src={x} alt="X" onClick={() => {setShowModal(false); setCurrId(null)}} />
+            <img className={styles.x_button} src={x} alt="X" onClick={() => {setShowModal(false); setCurrId(null)}} />
             <PlayerCard playerId={currId} type="Offense"/>
           </div>
           </div>
