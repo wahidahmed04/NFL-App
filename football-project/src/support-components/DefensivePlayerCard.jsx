@@ -3,7 +3,7 @@ import { getSinglePlayerStats } from '../fetch-supabase/getSinglePlayerStats.js'
 import styles from '/src/styling/PlayerCard.module.css'
 export default function PlayerCard({playerId, type}) {
   const [playerStats, setPlayerStats] = useState([])
-
+  const [onBack, setOnBack] = useState(false)
   useEffect(() => {
     async function load() {
       const stats = await getSinglePlayerStats(playerId, type)
@@ -17,7 +17,9 @@ export default function PlayerCard({playerId, type}) {
   const p = playerStats[0]
   if(p.players.position === "CB" || p.players.position==="S"){
   return (
-    <div className={styles.card_container}>
+    <div onClick={() => setOnBack(!onBack)} className={styles.card_container}>
+      <div className={onBack ? styles.card_flipped : styles.card}>
+      <div className={styles.front}>
       <img className={styles.player_image} src={p.players.headshot_url}/>
       <div className={styles.line_break}></div>
       <h3 className={styles.name}>{p.players.name}</h3> 
@@ -46,13 +48,30 @@ export default function PlayerCard({playerId, type}) {
     <h3 className={styles.stat_header}>Comb Tkl</h3>
   </div>
 </div>
+</div>
+<div className={styles.back}>
+      <h3 className={styles.name}>{p.players.name}</h3> 
+      <div className={styles.line_break}></div>
+      <div className={styles.bio_container}>
 
+      <h3>Age: {p.players.age}</h3>
+
+       <h3>Height: {p.players.height}</h3>
+
+       <h3>Weight: {p.players.weight}</h3>
+
+       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       </div>
+</div>
+</div>
     </div>
   )
 }
 if(p.players.position === "LB"){
   return (
-    <div className={styles.card_container}>
+    <div onClick={() => setOnBack(!onBack)} className={styles.card_container}>
+      <div className={onBack ? styles.card_flipped : styles.card}>
+      <div className={styles.front}>
       <img className={styles.player_image} src={p.players.headshot_url}/>
       <div className={styles.line_break}></div>
       <h3 className={styles.name}>{p.players.name}</h3> 
@@ -83,11 +102,29 @@ if(p.players.position === "LB"){
 </div>
 
     </div>
+    <div className={styles.back}>
+      <h3 className={styles.name}>{p.players.name}</h3> 
+      <div className={styles.line_break}></div>
+      <div className={styles.bio_container}>
+
+      <h3>Age: {p.players.age}</h3>
+
+       <h3>Height: {p.players.height}</h3>
+
+       <h3>Weight: {p.players.weight}</h3>
+
+       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       </div>
+</div>
+    </div>
+    </div>
   )
 }
 if(p.players.position === "DT" || p.players.position ==="DE"){
   return (
-    <div className={styles.card_container}>
+    <div onClick={() => setOnBack(!onBack)} className={styles.card_container}>
+      <div className={onBack ? styles.card_flipped : styles.card}>
+      <div className={styles.front}>
       <img className={styles.player_image} src={p.players.headshot_url}/>
       <div className={styles.line_break}></div>
       <h3 className={styles.name}>{p.players.name}</h3> 
@@ -117,6 +154,22 @@ if(p.players.position === "DT" || p.players.position ==="DE"){
   </div>
 </div>
 
+    </div>
+    <div className={styles.back}>
+      <h3 className={styles.name}>{p.players.name}</h3> 
+      <div className={styles.line_break}></div>
+      <div className={styles.bio_container}>
+
+      <h3>Age: {p.players.age}</h3>
+
+       <h3>Height: {p.players.height}</h3>
+
+       <h3>Weight: {p.players.weight}</h3>
+
+       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       </div>
+</div>
+    </div>
     </div>
   )
 }

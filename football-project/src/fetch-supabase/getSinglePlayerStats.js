@@ -8,7 +8,11 @@ export async function getSinglePlayerStats(playerId, type) {
     players (
     name,
     position,
-    headshot_url
+    headshot_url,
+    jersey_number, 
+    height,
+    weight, 
+    age
     )
   `)
   .eq("player_id", playerId)
@@ -26,7 +30,11 @@ export async function getSinglePlayerStats(playerId, type) {
     players (
     name,
     position,
-    headshot_url
+    headshot_url,
+    jersey_number, 
+    height,
+    weight, 
+    age
     )
   `)
   .eq("player_id", playerId)

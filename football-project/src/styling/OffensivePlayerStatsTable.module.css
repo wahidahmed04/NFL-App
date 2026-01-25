@@ -61,6 +61,7 @@ a{
   border-radius: 8px;
   width: 460px;
   color: white;
+  min-height: 425px;
 }
 .x_button{
   position: absolute;
