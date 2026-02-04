@@ -59,7 +59,7 @@ export default function PlayerCard({playerId, type}) {
 
        <h3>Weight: {p.players.weight}</h3>
 
-       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       <h3>Position: {p.players.position}</h3>
        </div>
 </div>
 </div>
@@ -112,7 +112,7 @@ else if(p.players.position === "RB"){
 
        <h3>Weight: {p.players.weight}</h3>
 
-       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       <h3>Position: {p.players.position}</h3>
        </div>
 </div>
 </div>
@@ -161,7 +161,7 @@ if(p.players.position === "WR" || p.players.position==="TE"){
 
        <h3>Weight: {p.players.weight}</h3>
 
-       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       <h3>Position: {p.players.position}</h3>
        </div>
 </div>
 </div>

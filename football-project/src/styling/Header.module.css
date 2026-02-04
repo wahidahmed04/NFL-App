@@ -22,7 +22,7 @@ html, body {
     color: white;
 }
 
-.navbar a{
+nav a{
   border: 2px solid transparent;
 color: white;
 text-decoration: none;
@@ -33,6 +33,7 @@ font-size: 22px;
 margin-right: 20px;
 }
 .navbar ul{
+
   list-style-type: none;
   background-color: rgb(38, 47, 61);
   padding: 0px;
@@ -41,8 +42,12 @@ margin-right: 20px;
 }
 .navbar a:hover{
   border-color: white;
-
+  font-weight: bold;
 }
 .navbar li{
   float:left;
+}
+.selected{
+  font-weight: bolder;
+  text-decoration: underline;
 }

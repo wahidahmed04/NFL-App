@@ -1,0 +1,28 @@
+.title{
+    text-align: center;
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.button_container{
+    display: flex;
+    justify-content: space-between;
+}
+.button, .selected{
+    margin: 0px 60px;
+    width: 170px;
+    font-size: 27.5px;
+    cursor: pointer;
+    background-color: rgb(43, 0, 255);
+    color: white;
+    border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px;
+}
+.selected{
+    font-weight: bold;
+    text-decoration: underline;
+}
+.button:hover{
+    font-weight: bolder;
+}

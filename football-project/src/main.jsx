@@ -10,6 +10,7 @@ import DefensivePlayerStatsTable from './table-components/DefensivePlayerStatsTa
 import DefensiveTeamStatsTable from './table-components/DefensiveTeamStatsTable.jsx'
 import Games from './support-components/Games.jsx'
 import PlayerCard from './support-components/PlayerCard.jsx'
+import Graphs from './support-components/Graphs.jsx'
 const router = createBrowserRouter([
   {
   path: '/',
@@ -42,10 +43,11 @@ const router = createBrowserRouter([
   errorElement: <div>404 Not Found</div>
 },
 {
-  path: '/card',
-  element: <PlayerCard/>,
+  path: '/graphs',
+  element: <Graphs/>,
   errorElement: <div>404 Not Found</div>
-}
+},
+
 
 ])
 createRoot(document.getElementById('root')).render(

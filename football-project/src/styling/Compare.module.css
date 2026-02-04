@@ -1,0 +1,77 @@
+
+.inputs_container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 100px;
+}
+
+/* wrapper that locks width and positioning */
+.input_block {
+  position: relative;
+  width: 310px; /* SAME as input width */
+}
+
+/* input */
+.name_input {
+  font-size: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* results dropdown */
+.results_container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  width: 290px;
+  margin-top: 5px;
+
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color: white;
+  color: rgb(47, 64, 255);
+  padding: 10px;
+  font-size: 19px;
+  z-index: 10;
+}
+
+/* individual result */
+.individual_result_container {
+  cursor: pointer;
+}
+
+.individual_result_container:hover {
+  background-color: yellow;
+}
+.card_container, .second_card_container{
+  position: relative;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 460px;
+  min-height: 425px;
+}
+.second_card_container{
+  left: 55px;
+}
+.card_container{
+left: 5px;
+}
+
+.first_card_graph_container{
+  display: flex;
+}
+.second_card_graph_container{
+  display: flex;
+
+  margin-right: 30px;
+}
+.card_graph_container{
+  display: flex;
+  justify-content: space-between;
+}
+.footnote{
+  text-align: center;
+  font-size: 30px;
+  padding-bottom: 20px;
+}

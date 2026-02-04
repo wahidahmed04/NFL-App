@@ -15,5 +15,3 @@ export async function getTeamStats(){
   }
   return data
 }
-const stats = await getTeamStats()
-console.log(stats)

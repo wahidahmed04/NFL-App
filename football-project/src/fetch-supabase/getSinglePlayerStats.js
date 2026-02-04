@@ -25,7 +25,7 @@ export async function getSinglePlayerStats(playerId, type) {
     else {
         const {data, error} = await supabase
     .from("player_stats_defense")
-    .select(`
+    .select(` 
     *,
     players (
     name,

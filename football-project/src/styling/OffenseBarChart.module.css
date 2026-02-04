@@ -1,0 +1,10 @@
+.graph_container{
+    background-color: #030c1b;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+.tooltip_container{
+    background-color: #030c1b;
+    color: white;
+    padding: 5px 30px;
+}

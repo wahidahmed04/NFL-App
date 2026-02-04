@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { getSinglePlayerStats } from '../fetch-supabase/getSinglePlayerStats.js'
 import styles from '/src/styling/PlayerCard.module.css'
-export default function PlayerCard({playerId, type}) {
+export default function DefensivePlayerCard({playerId, type}) {
   const [playerStats, setPlayerStats] = useState([])
-  const [onBack, setOnBack] = useState(false)
+  const [onBack, setOnBack] = useState(false) 
   useEffect(() => {
     async function load() {
       const stats = await getSinglePlayerStats(playerId, type)
@@ -60,7 +60,7 @@ export default function PlayerCard({playerId, type}) {
 
        <h3>Weight: {p.players.weight}</h3>
 
-       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       <h3>Position: {p.players.position}</h3>
        </div>
 </div>
 </div>
@@ -113,7 +113,7 @@ if(p.players.position === "LB"){
 
        <h3>Weight: {p.players.weight}</h3>
 
-       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       <h3>Position: {p.players.position}</h3>
        </div>
 </div>
     </div>
@@ -166,7 +166,7 @@ if(p.players.position === "DT" || p.players.position ==="DE"){
 
        <h3>Weight: {p.players.weight}</h3>
 
-       <h3>Jersey Number: #{p.players.jersey_number}</h3>
+       <h3>Position: {p.players.position}</h3>
        </div>
 </div>
     </div>
