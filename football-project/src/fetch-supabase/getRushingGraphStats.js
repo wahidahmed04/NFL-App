@@ -2,20 +2,20 @@ import { supabase } from "../supabaseClient.js";
 export async function getRushingGraphStats(){
     const {data: playerYards, error: yardsError} = await supabase
     .from("player_stats_offense")
-    .select("player_id, rushing_yards")
+    .select("players(name), rushing_yards")
     .order("rushing_yards", {ascending: false})
     .limit(5)
     if(yardsError) throw yardsError
     const {data: playerTouchdowns, error: touchdownsError} = await supabase
     .from("player_stats_offense")
-    .select("player_id, rushing_touchdowns")
+    .select("players(name), rushing_touchdowns")
     .order("rushing_touchdowns", {ascending: false})
     .limit(5)
     if(touchdownsError) throw touchdownsError
     const {data: playerYPC, error: YPCError} = await supabase
   .from('player_stats_offense')
-  .select('player_id, rushing_attempts, rushing_yards, games_played, players(position)')
-  .eq('players.position', 'RB');
+  .select('player_id, rushing_attempts, rushing_yards, games_played, players(position, name)')
+  .in('players.position', ['RB', 'QB']);
 
     if(YPCError) throw YPCError
     const withDerived = playerYPC.map(p => ({

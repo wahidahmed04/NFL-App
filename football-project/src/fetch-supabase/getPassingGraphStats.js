@@ -2,19 +2,19 @@ import { supabase } from "../supabaseClient.js";
 export async function getPassingGraphStats(){
     const {data: playerYards, error: yardsError} = await supabase
     .from("player_stats_offense")
-    .select("player_id, passing_yards")
+    .select("passing_yards, players(name)")
     .order("passing_yards", {ascending: false})
     .limit(5)
     if(yardsError) throw yardsError
     const {data: playerTouchdowns, error: touchdownsError} = await supabase
     .from("player_stats_offense")
-    .select("player_id, passing_touchdowns")
+    .select("players(name), passing_touchdowns")
     .order("passing_touchdowns", {ascending: false})
     .limit(5)
     if(touchdownsError) throw touchdownsError
     const {data: playerCompletion, error: completionError} = await supabase
   .from('player_stats_offense')
-  .select('player_id, passing_attempts, passing_completions, games_played, players(position)')
+  .select('passing_attempts, passing_completions, games_played, players(name, position)')
   .eq('players.position', 'QB');
 
     if(completionError) throw completionError

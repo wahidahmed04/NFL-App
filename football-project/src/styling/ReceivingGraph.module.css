@@ -2,10 +2,15 @@
     background-color: #030c1b;
     margin-left: 30px;
     margin-bottom: 30px;
-
 }
 .tooltip_container{
     background-color: #030c1b;
     color: white;
     padding: 5px 30px;
+}
+.all_graphs{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
