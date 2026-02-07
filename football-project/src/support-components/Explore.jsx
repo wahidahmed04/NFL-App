@@ -5,7 +5,7 @@ import RushingGraph from './RushingGraph.jsx'
 import ReceivingGraph from './ReceivingGraph.jsx'
 import DefenseGraph from './DefenseGraph.jsx'
 export default function Explore() {
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState('Passing')
   return (
     <div>
       <h1 className={styles.title}>Leaders</h1>

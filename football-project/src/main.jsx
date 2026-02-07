@@ -11,47 +11,51 @@ import DefensiveTeamStatsTable from './table-components/DefensiveTeamStatsTable.
 import Games from './support-components/Games.jsx'
 import PlayerCard from './support-components/PlayerCard.jsx'
 import Graphs from './support-components/Graphs.jsx'
-const router = createBrowserRouter([
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Home />,
+      errorElement: <div>404 Not Found</div>,
+    },
+    {
+      path: '/offense/teams',
+      element: <OffensiveTeamStatsTable />,
+      errorElement: <div>404 Not Found</div>,
+    },
+    {
+      path: '/offense/players',
+      element: <OffensivePlayerStatsTable />,
+      errorElement: <div>404 Not Found</div>,
+    },
+    {
+      path: '/defense/teams',
+      element: <DefensiveTeamStatsTable />,
+      errorElement: <div>404 Not Found</div>,
+    },
+    {
+      path: '/defense/players',
+      element: <DefensivePlayerStatsTable />,
+      errorElement: <div>404 Not Found</div>,
+    },
+    {
+      path: '/games',
+      element: <Games />,
+      errorElement: <div>404 Not Found</div>,
+    },
+    {
+      path: '/graphs',
+      element: <Graphs />,
+      errorElement: <div>404 Not Found</div>,
+    },
+  ],
   {
-  path: '/',
-  element: <Home/>,
-  errorElement: <div>404 Not Found</div>
-},
-{
-  path: '/offense/teams',
-  element: <OffensiveTeamStatsTable/>,
-  errorElement: <div>404 Not Found</div>
-},
-{
-  path: '/offense/players',
-  element: <OffensivePlayerStatsTable/>,
-  errorElement: <div>404 Not Found</div>
-},
-{
-  path: '/defense/teams',
-  element: <DefensiveTeamStatsTable/>,
-  errorElement: <div>404 Not Found</div>
-},
-{
-  path: '/defense/players',
-  element: <DefensivePlayerStatsTable/>,
-  errorElement: <div>404 Not Found</div>
-},
-{
-  path: '/games',
-  element: <Games/>,
-  errorElement: <div>404 Not Found</div>
-},
-{
-  path: '/graphs',
-  element: <Graphs/>,
-  errorElement: <div>404 Not Found</div>
-},
-
-
-])
+    basename: import.meta.env.PROD ? '/NFL-App' : '/',
+  },
+);
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>,
-)
+    <RouterProvider router={router} />
+  </StrictMode>
+);

@@ -242,7 +242,7 @@ function getStatValue(statObj) {
 }
 
 async function fetchTeamStats(teamId) {
-  const scheduleUrl = `https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${teamId}/schedule`;
+  const scheduleUrl = `https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${teamId}/schedule?seasontype=2`;
   const statsUrl = `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/${YEAR}/types/${SEASON_TYPE}/teams/${teamId}/statistics`;
 
   // fetch schedule

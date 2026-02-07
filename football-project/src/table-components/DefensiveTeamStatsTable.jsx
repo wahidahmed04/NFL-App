@@ -48,7 +48,7 @@ export default function DefensiveTeamStats() {
           <th>RYD</th>
           <th>TD</th>
           <th>YPG</th>
-          <th>RD%</th>
+          <th>RZ%</th>
           <th>3D%</th>
           <th>SK</th>
           </tr>
@@ -68,7 +68,7 @@ export default function DefensiveTeamStats() {
           <th>RYD</th>
           <th>TD</th>
           <th>YPG</th>
-          <th>RD%</th>
+          <th>RZ%</th>
           <th>3D%</th>
           <th>SK</th>
           </tr>)
