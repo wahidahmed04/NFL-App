@@ -1,61 +1,28 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
-import App from './App.jsx'
 import Home from './support-components/Home.jsx'
 import OffensivePlayerStatsTable from './table-components/OffensivePlayerStatsTable.jsx'
 import OffensiveTeamStatsTable from './table-components/OffensiveTeamStatsTable.jsx'
 import DefensivePlayerStatsTable from './table-components/DefensivePlayerStatsTable.jsx'
 import DefensiveTeamStatsTable from './table-components/DefensiveTeamStatsTable.jsx'
 import Games from './support-components/Games.jsx'
-import PlayerCard from './support-components/PlayerCard.jsx'
 import Graphs from './support-components/Graphs.jsx'
 
-const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <Home />,
-      errorElement: <div>404 Not Found</div>,
-    },
-    {
-      path: '/offense/teams',
-      element: <OffensiveTeamStatsTable />,
-      errorElement: <div>404 Not Found</div>,
-    },
-    {
-      path: '/offense/players',
-      element: <OffensivePlayerStatsTable />,
-      errorElement: <div>404 Not Found</div>,
-    },
-    {
-      path: '/defense/teams',
-      element: <DefensiveTeamStatsTable />,
-      errorElement: <div>404 Not Found</div>,
-    },
-    {
-      path: '/defense/players',
-      element: <DefensivePlayerStatsTable />,
-      errorElement: <div>404 Not Found</div>,
-    },
-    {
-      path: '/games',
-      element: <Games />,
-      errorElement: <div>404 Not Found</div>,
-    },
-    {
-      path: '/graphs',
-      element: <Graphs />,
-      errorElement: <div>404 Not Found</div>,
-    },
-  ],
-  {
-    basename: import.meta.env.PROD ? '/NFL-App' : '/',
-  },
-);
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/offense/teams" element={<OffensiveTeamStatsTable />} />
+        <Route path="/offense/players" element={<OffensivePlayerStatsTable />} />
+        <Route path="/defense/teams" element={<DefensiveTeamStatsTable />} />
+        <Route path="/defense/players" element={<DefensivePlayerStatsTable />} />
+        <Route path="/games" element={<Games />} />
+        <Route path="/graphs" element={<Graphs />} />
+        <Route path="*" element={<div>404 Not Found</div>} />
+      </Routes>
+    </HashRouter>
   </StrictMode>
-);
+)
